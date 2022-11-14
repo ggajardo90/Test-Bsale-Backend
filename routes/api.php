@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\CategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,4 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('product', [ProductController::class,'index']);
+Route::post('searchProduct', [ProductController::class,'search']);
 Route::get('category', [CategoryController::class,'index']);

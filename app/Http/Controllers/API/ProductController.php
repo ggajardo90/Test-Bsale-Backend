@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -16,6 +17,16 @@ class ProductController extends Controller
     public function index()
     {
         return Product::all();
+    }
+
+    public function search(Request $request)
+    {
+        $search = strtoupper($request->search);
+        if (!strlen($request->search)) {
+            return Product::all();
+        }
+
+        return Product::where('name', 'like', "%$search%")->get();
     }
 
     /**
